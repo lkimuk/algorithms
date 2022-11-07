@@ -2,7 +2,6 @@
 #include <algorithm>
 #include <iostream>
 #include <ranges>
-#include <string_view>
 #include <utility>
 
 void naive_bayes_model::push_data(
@@ -116,7 +115,7 @@ void naive_bayes_model::print_log() {
         std::cout << e << " ";
     }
 
-    std::cout << "----------------------------------\nunique datasets:\n";
+    std::cout << "\n----------------------------------\nunique datasets:\n";
     for (const auto& [key, value] : get_unique_datasets()) {
         std::cout << key << ": ";
         for (const auto& e : value)

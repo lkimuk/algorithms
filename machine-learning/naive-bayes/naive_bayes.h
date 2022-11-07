@@ -1,8 +1,8 @@
 #ifndef NAVIE_BAYES_H
 #define NAVIE_BAYES_H
 
-#include <string>
 #include <map>
+#include <string>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
