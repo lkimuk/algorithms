@@ -1,5 +1,6 @@
 #include "naive_bayes.h"
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <ranges>
 #include <utility>
@@ -14,7 +15,9 @@ void naive_bayes_model::train() {
     int dataSize = dataSets_.size();
     std::ranges::for_each(dataSets_, [&](const auto& item) {
         if (!priorProbability_.contains(item.first)) {
+            // 统计分类在数据集中所占的个数
             int size = dataSets_.count(item.first);
+            // 先验概率 = 个数 / 数据集长度
             priorProbability_[item.first] = size / (double)dataSize;
         }
     });
@@ -76,9 +79,12 @@ auto naive_bayes_model::predicate(std::string_view contents) -> std::string_view
                 });
 
     for (const auto& [key, value] : priorProbability_) {
-        double probability = priorProbability_[key];
+        // 取对数，避免多个小数相乘导致的下溢出
+        double probability = std::log(priorProbability_[key]);
         for (auto&& word : words) {
-            probability *= conditionalProbability_[std::string(word) + "|" + key];
+            //probability *= conditionalProbability_[std::string(word) + "|" + key];
+            // ln(ab) = ln(a) + ln(b)
+            probability += std::log(conditionalProbability_[std::string(word) + "|" + key]);
         }
         std::string index { key + "|" };
         index += contents;
