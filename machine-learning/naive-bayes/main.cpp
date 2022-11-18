@@ -2,14 +2,38 @@
 #include <iostream>
 
 int main() {
-    naive_bayes_model model;
-    // model.push_data("normal message", {"my", "dog", "has", "flea", "problems", "help", "please"});
-    // model.push_data("abusive message", {"maybe", "not", "take", "him", "to", "dog", "park", "stupid"});
-    // model.push_data("normal message", {"my", "dalmation", "is", "so", "cute", "I", "love", "him"});
-    // model.push_data("abusive message", {"stop", "posting", "stupid", "worthless", "garbage"});
-    // model.push_data("normal message",  {"my", "licks", "ate", "my", "steak", "how", "to", "stop", "him"});
-    // model.push_data("abusive message", {"quit", "buying", "worthless", "dog", "food", "stupid"});
-    // model.push_data("abusive message", {"stupid", "worthless", "garbage", "stupid"});
+    naive_bayes_model model; // {
+        // { "ºÃ¹Ï", {"ÎÚºÚ", "ÉÔòé", "×ÇÏì", "ÇåÎú", "ÉÔ°¼", "Ó²»¬"} },
+        // { "ºÃ¹Ï", {"ÎÚºÚ", "ÉÔòé", "×ÇÏì", "ÉÔºı", "ÉÔ°¼", "ÈíÕ³"} },
+        // { "ºÃ¹Ï", {"ÇàÂÌ", "ÉÔòé", "×ÇÏì", "ÇåÎú", "ÉÔ°¼", "ÈíÕ³"} },
+        // { "ºÃ¹Ï", {"Ç³°×", "òéËõ", "×ÇÏì", "ÇåÎú", "°¼Ïİ", "Ó²»¬"} },
+        // { "ºÃ¹Ï", {"Ç³°×", "òéËõ", "×ÇÏì", "ÇåÎú", "°¼Ïİ", "Ó²»¬"} },
+        // { "ºÃ¹Ï", {"ÇàÂÌ", "òéËõ", "³ÁÃÆ", "ÇåÎú", "°¼Ïİ", "Ó²»¬"} },
+        // { "ºÃ¹Ï", {"ÎÚºÚ", "òéËõ", "×ÇÏì", "ÇåÎú", "°¼Ïİ", "Ó²»¬"} },
+        // { "ºÃ¹Ï", {"ÎÚºÚ", "òéËõ", "³ÁÃÆ", "ÇåÎú", "°¼Ïİ", "Ó²»¬"} },
+        // { "ºÃ¹Ï", {"ÇàÂÌ", "òéËõ", "×ÇÏì", "ÇåÎú", "°¼Ïİ", "Ó²»¬"} },
+        // { "»µ¹Ï", {"ÇàÂÌ", "òéËõ", "³ÁÃÆ", "ÉÔºı", "ÉÔ°¼", "Ó²»¬"} },
+        // { "»µ¹Ï", {"Ç³°×", "òéËõ", "×ÇÏì", "Ä£ºı", "Æ½Ì¹", "Ó²»¬"} },
+        // { "»µ¹Ï", {"ÎÚºÚ", "ÉÔòé", "×ÇÏì", "ÇåÎú", "ÉÔ°¼", "ÈíÕ³"} },
+        // { "»µ¹Ï", {"Ç³°×", "ÉÔòé", "³ÁÃÆ", "ÉÔºı", "°¼Ïİ", "Ó²»¬"} },
+        // { "»µ¹Ï", {"ÇàÂÌ", "ÉÔòé", "×ÇÏì", "ÉÔºı", "°¼Ïİ", "Ó²»¬"} },
+        // { "»µ¹Ï", {"Ç³°×", "òéËõ", "×ÇÏì", "Ä£ºı", "Æ½Ì¹", "ÈíÕ³"} },
+        // { "»µ¹Ï", {"Ç³°×", "Ó²Í¦", "Çå´à", "Ä£ºı", "Æ½Ì¹", "Ó²»¬"} },
+        // { "»µ¹Ï", {"ÇàÂÌ", "Ó²Í¦", "Çå´à", "ÇåÎú", "Æ½Ì¹", "ÈíÕ³"} },
+        // { "»µ¹Ï", {"ÎÚºÚ", "ÉÔòé", "³ÁÃÆ", "ÉÔºı", "ÉÔ°¼", "Ó²»¬"} }
+        // { "×÷Òµ", {"Ï²»¶", "Ã÷Ìì", "ĞÁ¿à"} },
+        // { "×÷Òµ", {"Ï²»¶", "ºì¶¹"} },
+        // { "×÷Òµ", {"ĞÁ¿à", "Ã÷Ìì"} },
+        // { "×÷Òµ", {"Ã÷Ìì"} },
+        // { "×÷Òµ", {"ĞÁ¿à", "Ã÷Ìì"} },
+        // { "×÷Òµ", {"ĞÁ¿à", "ºì¶¹"} },
+        // { "×÷Òµ", {"ĞÁ¿à", "Ï²»¶"} },
+        // { "×÷Òµ", {"ĞÁ¿à"} },
+        // { "ÇéÊé", {"Ï²»¶", "ºì¶¹", "Ï²»¶", "Ã÷Ìì"} },
+        // { "ÇéÊé", {"Ã÷Ìì", "Ï²»¶", "ºì¶¹"} },
+        // { "ÇéÊé", {"Ï²»¶", "ºì¶¹", "Ï²»¶", "Ï²»¶"} },
+        // { "ÇéÊé", {"Ï²»¶", "Ï²»¶", "ºì¶¹", "Ï²»¶"} },
+    // };
     // model.push_data("Normal message", {"Dear", "Friend"});
     // model.push_data("Normal message", {"Dear", "Friend", "Money"});
     // model.push_data("Normal message", {"Dear", "Lunch", });
@@ -42,8 +66,12 @@ int main() {
     model.push_data("»µ¹Ï", {"ÎÚºÚ", "ÉÔòé", "³ÁÃÆ", "ÉÔºı", "ÉÔ°¼", "Ó²»¬"});
     
     model.train();
-    auto classification = model.predicate("ÇàÂÌ ÇåÎú ³ÁÃÆ ×ÇÏì");
+    auto classification = model.predict("ÇàÂÌ ÇåÎú ³ÁÃÆ ×ÇÏì");
+    // auto classification = model.predict("Ï²»¶ Ï²»¶ Ï²»¶ ĞÁ¿à");
+    // auto classification = model.predict("Dear Friend");
+    
     model.print_log();
 
-    std::cout << "The classification is " << classification << "\n";
+    // The classification is ºÃ¹Ï
+    std::cout << "\nThe classification is " << classification << "\n";
 }

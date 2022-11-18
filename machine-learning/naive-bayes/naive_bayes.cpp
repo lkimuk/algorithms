@@ -5,9 +5,17 @@
 #include <ranges>
 #include <utility>
 
+
+naive_bayes_model::naive_bayes_model(
+    std::initializer_list<pair_type> elems) {
+    for (auto&& elem : elems) {
+        push_data(elem.first, std::move(elem.second));
+    }
+}
+
 void naive_bayes_model::push_data(
-    std::string_view key, const value_type& value) {
-    dataSets_.emplace(std::make_pair(key, value));
+    std::string_view key, value_type value) {
+    dataSets_.emplace(std::make_pair(key, std::move(value)));
 }
 
 void naive_bayes_model::train() {
@@ -70,7 +78,7 @@ auto naive_bayes_model::get_unique_datasets() -> unique_type {
     return uniqueDatasets;
 }
 
-auto naive_bayes_model::predicate(std::string_view contents) -> std::string_view {
+auto naive_bayes_model::predict(std::string_view contents) -> std::string_view {
     // parse the features
     auto words = contents
                 | std::views::split(' ')
